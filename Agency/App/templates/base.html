@@ -1,11 +1,111 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- LOGO -->
+    <link rel="shortcut icon" href="{% static 'img/logo.ico' %}">
+
+    <!-- BOOTSTRAP 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- STATIC CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/fc20eca1ac.js" crossorigin="anonymous"></script>
+
+    <title>{% block title %} HR Mastery {% endblock title %}</title>
 </head>
 <body>
-    <h1>TEST PAGE</h1>
+    <div class="wrapper">
+        <div id="preloader"></div>
+        <style>
+            body {
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url("/static/img/frontend.jpg");
+                background-position: center 0px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+        </style>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <div class="col-sm">
+                        <a href="/" class="navbar-brand flex-grow-1" id="navbar-content">
+                          {% block navbar-brand %}
+                            <i class="text-warning  fas fa-chart-pie"></i>
+                            &nbsp;&nbsp; 
+                            HR Mastery
+                          {% endblock navbar-brand %}
+                        </a>
+                    </div>
+                    {% block link %}{% endblock link %}
+                </div>
+            </nav>
+        </header>
+        {% block content %}{% endblock content %}
+
+        {% include "modals/frontend.html" %}        
+        {% include "modals/backend.html" %}        
+        {% include "modals/fullstack.html" %}        
+    </div>
+    <!-- END // WRAPPER -->
+
+    <footer class="bg-dark text-center text-light text-lg-start" id="footer">
+        <div class="text-center p-3" style="background-color: rgba(0,0,0,0.2);">
+            &copy; {% now "Y" %} Copyright
+            <a href="https://raonar-vokshi.onrender.com/"
+            class="text-center text-decoration-none" target="_blank">
+                <span class="text-warning">www.raonar-vokshi.onrender.com</span> 
+            </a>
+        </div>
+    </footer>
+
+    <!-- BOOTSTRAP 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- TYPED JS EFFECT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js" integrity="sha512-tQQXRDB2wEmuJGtFrmmoFYzNTq8StA1XJrfO0OQbbTxd9G0CwaTDL6/C1y805IlvBVrMwOqob1kf6r/2U5XXVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- static js -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <!-- TYPED EFFECT FUNCTIONALITY -->
+    <script>
+         const typed = new Typed("#type-effect", {
+            strings: [
+                "are a job agency",
+                "offer you the best jobs",
+                "work with IT solutions",
+                "are the best agency",
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+    </script>
+
+    <!-- CLEAR THE FORM (INSIDE THE MODAL) WHEN CLOSED -->
+    <script>
+        $("#frontendModal, #backendModal, #fullstackModal").on("hidden.bs.modal", function() {
+            $('#frontendModal form')[0].reset();
+            $('#backendModal form')[0].reset();
+            $('#fullstackModal form')[0].reset();
+        });
+    </script>
 </body>
 </html>

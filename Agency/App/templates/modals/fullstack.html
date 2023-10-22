@@ -1,9 +1,10 @@
 {% extends "modals/base-modal.html" %}
 
+{% block action %} action="{% url 'email_fullstack' %}" {% endblock action %}
 
 {% block modal-id %} id="fullstackModal" {% endblock modal-id %}
 
-{% block modal-title %} <i class="fab fa-node-js"></i>&nbsp;&nbsp;  Full-Stack opportunities {% endblock modal-title %}
+{% block modal-title %} <i class="fab fa-node-js"></i>&nbsp;&nbsp;  Full-Stack opportunity {% endblock modal-title %}
 
 {% block validation %} onsubmit="return validateForm3()" {% endblock validation %}
 

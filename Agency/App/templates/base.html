@@ -56,6 +56,22 @@
     </div>
     <!-- END // WRAPPER -->
 
+    <!-- Message from backend (success) -->
+    {% for message in messages %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        {% if message.tags == "success" %}
+            <script>
+                const msg = "{{ message }}"
+                swal("Perfect!", msg, "success")
+            </script>
+        {% elif message.tags == "error" %}
+            <script>
+                const message = "{{ message }}"
+                swal("Sorry!", message, "error")
+            </script>
+        {% endif %}
+    {% endfor %}
+
     <footer class="bg-dark text-center text-light text-lg-start" id="footer">
         <div class="text-center p-3" style="background-color: rgba(0,0,0,0.2);">
             &copy; {% now "Y" %} Copyright
@@ -78,7 +94,7 @@
     <!-- Inputmask -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- SweetAlert -->
+    <!-- SweetAlert (frontend) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- static js -->
@@ -106,6 +122,77 @@
             $('#backendModal form')[0].reset();
             $('#fullstackModal form')[0].reset();
         });
+    </script>
+
+    <!-- AJAX SPINNER -->
+    <script>
+        jQuery(function($) {
+            $(document).ajaxSend(function() {
+                $("#bg-spinner").fadeIn(500);
+            });
+
+            $(".btn-send").click(function() {
+                $.ajax({
+                    type: "GET",
+                    success: function (data) {
+                        const d = $.parseJSON(data);
+                        alert(d.Test);
+                    }
+                }).done(function() {
+                    setTimeout(() => {
+                        $("#bg-spinner").fadeOut(500);
+                    }, 700);
+                });
+            });
+        });
+
+        // CLOSE MODAL (AFTER "SEND BUTTON IS CLICKED")
+        $(".btn-send").click(() => {
+            const name = $("#name").val();
+            const age = $("#age").val();
+            const email = $("#email").val();
+            const phone = $("#phone").val();
+            const address = $("#address").val();
+            const experience = $("#experience").val();
+            const skills = $("#skills").val();
+            const file = $("#file").val();
+
+            const name2 = $("#name2").val();
+            const age2 = $("#age2").val();
+            const email2 = $("#email2").val();
+            const phone2 = $("#phone2").val();
+            const address2 = $("#address2").val();
+            const experience2 = $("#experience2").val();
+            const skills2 = $("#skills2").val();
+            const file2 = $("#file2").val();
+
+            const name3 = $("#name3").val();
+            const age3 = $("#age3").val();
+            const email3 = $("#email3").val();
+            const phone3 = $("#phone3").val();
+            const address3 = $("#address3").val();
+            const experience3 = $("#experience3").val();
+            const skills3 = $("#skills3").val();
+            const file3 = $("#file3").val();
+
+            if ((name != "") && (age != "") && (email != "") 
+            && (phone != "") && (address != "") && (experience != "")
+            && (skills != "") && (file != "")) {
+                $(".close-modal").modal("hide");
+            }
+            if ((name2 != "") && (age2 != "") && (email2 != "") 
+            && (phone2 != "") && (address2 != "") && (experience2 != "")
+            && (skills2 != "") && (file2 != "")) {
+                $(".close-modal").modal("hide");
+            }
+            if ((name3 != "") && (age3 != "") && (email3 != "") 
+            && (phone3 != "") && (address3 != "") && (experience3 != "")
+            && (skills3 != "") && (file3 != "")) {
+                $(".close-modal").modal("hide");
+            }
+        });
+
+
     </script>
 </body>
 </html>

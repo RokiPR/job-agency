@@ -1,9 +1,10 @@
 {% extends "modals/base-modal.html" %}
 
+{% block action %} action="{% url 'email_backend' %}" {% endblock action %}
 
 {% block modal-id %} id="backendModal" {% endblock modal-id %}
 
-{% block modal-title %} <i class="fab fa-python"></i>&nbsp;&nbsp;  Backend opportunities {% endblock modal-title %}
+{% block modal-title %} <i class="fab fa-python"></i>&nbsp;&nbsp;  Backend opportunity {% endblock modal-title %}
 
 {% block validation %} onsubmit="return validateForm2()" {% endblock validation %}
 

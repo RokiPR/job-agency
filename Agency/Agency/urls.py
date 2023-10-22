@@ -11,8 +11,8 @@ urlpatterns = [
     path('email-frontend/', views.email_frontend, name="email_frontend"),
 
     # # Path to send backend form
-    # path('email-backend/', views.email_backend, name="email_backend"),
+    path('email-backend/', views.email_backend, name="email_backend"),
 
     # # Path to send fullstack form
-    # path('email-full-stack/', views.email_fullstack, name="email_fullstack"),
+    path('email-full-stack/', views.email_fullstack, name="email_fullstack"),
 ]

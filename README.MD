@@ -16,7 +16,8 @@ This project is a full-stack job agency web application which includes: get and 
 * Ajax
 
 
-**Server:** Django
+**Server:** 
+* Django
 
 ## Author
 
